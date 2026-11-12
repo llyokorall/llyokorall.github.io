@@ -23,10 +23,12 @@ City of Edmonton or any transit agency.</p>
 <p><strong>Location.</strong> If you allow it, the app uses your device's location to show nearby stops and
 departures. Location is processed on your device only. We do not collect, store or sell it, and
 we do not share it with advertisers.</p>
-<p><strong>Trip planning ("Where to?").</strong> Routes are calculated on your device from the stored timetable.
-When you type an address or place name, that text is looked up with your phone's built-in Android
-geocoding service (provided by Google on most phones), limited to your transit region. Your current
-location is not sent with it, and we do not receive or store what you search for.</p>
+<p><strong>Trip planning ("Where to?").</strong> Routes, including walking paths, are calculated on your device
+from the stored timetable and the map tiles. When you type an address, shop or place name, that text
+is looked up with Photon (komoot's public OpenStreetMap search, photon.komoot.io) and with your
+phone's built-in Android geocoding service (provided by Google on most phones), limited to your
+transit region. Your current location is not sent with it, and we do not receive or store what you
+search for. Place data © OpenStreetMap contributors (ODbL).</p>
 <p><strong>Pinned lines.</strong> Lines you pin are stored on your device. If you have Android backup turned on,
 they may be included in your own Google backup.</p>
 <p><strong>Requests to transit and map servers.</strong> To show schedules, real-time arrivals and maps, the app
@@ -35,7 +37,8 @@ downloads data from:</p>
   <li>the open-data servers of the transit agency of the region you choose, for transit data
     (for example City of Edmonton: gtfs.edmonton.ca; BC Transit: bct.tmix.se; TransLink: gtfs-static.translink.ca);</li>
   <li>GitHub (github.com and its download servers), for prebuilt timetable files where available;</li>
-  <li>OpenFreeMap (tiles.openfreemap.org, served via Cloudflare), for map tiles.</li>
+  <li>OpenFreeMap (tiles.openfreemap.org, served via Cloudflare), for map tiles (also used on your phone to draw walking paths);</li>
+  <li>Photon by komoot (photon.komoot.io), only for the text you type in "Where to?".</li>
 </ul>
 <p><strong>Reminders.</strong> Departure reminders you set are scheduled and shown on your device only.</p>
 <p>Like any website, these servers receive your IP address and the map area being viewed. We do not
