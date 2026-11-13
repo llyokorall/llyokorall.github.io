@@ -3,17 +3,110 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Buszi</title>
+<title>Buszi – Bus &amp; Train Times</title>
+<meta name="description" content="Buszi: free bus and train times for Canadian and US cities. Nearby stops, live buses on the map, trip planner and reminders. No account.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<meta property="og:title" content="Buszi – Bus &amp; Train Times">
+<meta property="og:description" content="Your next bus, at a glance. Free, no account.">
+<meta property="og:image" content="https://llyokorall.github.io/buszi/banner.png">
 <style>
-  body { font: 16px/1.6 system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px; color: #1d1d1f; background: #fff; }
-  @media (prefers-color-scheme: dark) { body { background: #121212; color: #e8e8e8; } a { color: #8ab4f8; } }
+:root{--blue:#2445C4;--deep:#13257E;--amber:#FFB800;--ink:#1d1d1f;--muted:#5b6170;--bg:#f6f7fb;--card:#fff;--line:#e3e6ef;--link:#2445C4}
+@media (prefers-color-scheme:dark){:root{--ink:#eceef4;--muted:#a8aec0;--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--link:#8fa8ff}}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--link)}
+.hero{background:linear-gradient(160deg,#2C52DA,var(--blue) 40%,var(--deep));color:#fff;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero:before{width:620px;height:620px;right:-240px;top:-300px}
+.hero:after{width:460px;height:460px;left:-200px;bottom:-320px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.top{display:flex;gap:36px;align-items:center;padding-top:64px;padding-bottom:40px;flex-wrap:wrap}
+.logo{width:132px;height:132px;border-radius:34px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35);border:3px solid rgba(255,255,255,.25);flex:none}
+.logo img{width:100%;height:100%;display:block}
+h1{font-size:64px;line-height:1;margin:0;font-weight:800;letter-spacing:.5px}
+.tag{font-size:24px;font-weight:600;margin:12px 0 4px;opacity:.95}
+.sub{opacity:.75;margin:0}
+.badge{display:inline-block;margin-top:22px;background:#fff;color:var(--deep);font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none}
+.route{position:relative;height:60px;margin-bottom:24px}
+.route .line{position:absolute;left:0;right:0;top:25px;height:10px;border-radius:5px;background:rgba(255,255,255,.28)}
+.route .done{position:absolute;left:0;width:58%;top:25px;height:10px;border-radius:5px;background:var(--amber)}
+.route .stop{position:absolute;top:17px;width:26px;height:26px;margin-left:-13px;border-radius:50%;border:7px solid #fff;background:var(--deep)}
+.route .stop.on{border-color:var(--amber)}
+.route .bus{position:absolute;top:2px;left:58%;width:56px;height:120px;transform:translate(-30px,-30px) rotate(90deg);transform-origin:center}
+section{padding:48px 0}
+h2{font-size:28px;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card b{display:block;font-size:18px;margin-bottom:4px}
+.card span{color:var(--muted)}
+.ico{width:42px;height:42px;border-radius:12px;background:rgba(36,69,196,.12);display:grid;place-items:center;font-size:22px;margin-bottom:10px}
+.places p{margin:8px 0;color:var(--muted)}
+.places strong{color:var(--ink)}
+.fr{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.note{color:var(--muted)}
+footer{padding:36px 0 48px;color:var(--muted);font-size:15px}
+footer a{margin-right:16px;display:inline-block}
+@media (max-width:560px){h1{font-size:48px}.tag{font-size:20px}.top{padding-top:44px;gap:24px}.logo{width:104px;height:104px;border-radius:28px}}
 </style>
 </head>
 <body>
-<h1>Buszi</h1>
-<p>A free, independent app for Edmonton bus and LRT times: nearby stops on a map, real-time arrivals,
-and pinned lines. Not affiliated with the City of Edmonton.</p>
-<p><a href="privacy.html">Privacy policy</a> · Contact: <a href="mailto:alicehouseapp@gmail.com">alicehouseapp@gmail.com</a></p>
-<p><small>Transit data: City of Edmonton Open Data. Map data © OpenStreetMap contributors.</small></p>
+<header class="hero">
+  <div class="wrap">
+    <div class="top">
+      <div class="logo"><img src="logo.svg" alt="Buszi logo"></div>
+      <div>
+        <h1>Buszi</h1>
+        <p class="tag">Your next bus, at a glance</p>
+        <p class="sub">Free bus &amp; train times · Canada &amp; USA · No account</p>
+        <span class="badge">Coming soon to Google Play</span>
+      </div>
+    </div>
+    <div class="route" aria-hidden="true">
+      <div class="line"></div><div class="done"></div>
+      <div class="stop on" style="left:2%"></div><div class="stop on" style="left:34%"></div>
+      <div class="stop" style="left:66%"></div><div class="stop" style="left:98%"></div>
+      <img class="bus" src="bus.png" alt="">
+    </div>
+  </div>
+</header>
+
+<main>
+<section><div class="wrap">
+  <h2>What Buszi does</h2>
+  <div class="grid">
+    <div class="card"><div class="ico">📍</div><b>Nearby, at a glance</b><span>Open the app and see every line around you with its next departures.</span></div>
+    <div class="card"><div class="ico">🟢</div><b>Live times</b><span>Real-time arrivals where the agency publishes them, refreshed about every 30 seconds.</span></div>
+    <div class="card"><div class="ico">🗺️</div><b>Buses on the map</b><span>Watch buses move along their street, and see how full they are when the agency shares it.</span></div>
+    <div class="card"><div class="ico">🧭</div><b>Plan and go</b><span>Trip planner with walking and transfers. Tap Start and Buszi buzzes when it's time to get off.</span></div>
+    <div class="card"><div class="ico">⏰</div><b>Reminders</b><span>A nudge 2, 5 or 10 minutes before your bus leaves, following delays.</span></div>
+    <div class="card"><div class="ico">📶</div><b>Works offline</b><span>The timetable is stored on your phone. Data saver for mobile data.</span></div>
+  </div>
+</div></section>
+
+<section class="places" style="padding-top:0"><div class="wrap">
+  <h2>Where</h2>
+  <p><strong>Canada:</strong> Edmonton, Calgary, Lethbridge, Metro Vancouver (timetable), Victoria, Kelowna, Kamloops, Nanaimo, Whistler, Prince George and more BC communities, Toronto, Ottawa, Hamilton, Brampton, Durham Region, Waterloo Region, London, Guelph, Kingston, Montréal (buses), Longueuil, Greater Montréal commuter trains, Gatineau, Québec City, Winnipeg, Regina, Saskatoon, Halifax.</p>
+  <p><strong>United States:</strong> Boston, Seattle, Chicago, Denver, San Francisco Bay Area, Sacramento, San Diego, Austin, Fort Worth, Atlanta, Miami-Dade, Pittsburgh.</p>
+  <p><strong>Live times:</strong> Edmonton, Calgary, Halifax, Hamilton, BC Transit communities, Boston, Seattle, Denver. Elsewhere, the published timetable.</p>
+</div></section>
+
+<section class="fr" lang="fr"><div class="wrap">
+  <h2>En français</h2>
+  <p>Buszi vous indique quand passe votre prochain bus ou train, gratuitement et sans compte : arrêts à proximité, heures en direct là où elles sont publiées, bus sur la carte, planificateur de trajet et rappels. L'appli est offerte en français et en anglais.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Free and private</h2>
+  <p>Buszi is free. It shows at most one short ad when you open the app, no more than once every few hours. No account, no sign-up. Your location stays on your phone. <a href="privacy.html">Read the privacy policy</a>.</p>
+  <p class="note">Buszi is an independent app. It is not affiliated with, endorsed by or operated by any city or transit agency. Transit data comes from each agency's open data, used under its licence (full list in the app). Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, map tiles by <a href="https://openfreemap.org">OpenFreeMap</a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a href="privacy.html">Privacy policy</a>
+  <a href="mailto:alicehouseapp@gmail.com">Contact: alicehouseapp@gmail.com</a>
+  <a href="../">Alice House Apps</a>
+  <p>© 2026 Alice House Apps</p>
+</div></footer>
 </body>
 </html>
